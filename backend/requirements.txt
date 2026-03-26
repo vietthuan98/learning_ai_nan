@@ -1,0 +1,35 @@
+# ============================================================
+# requirements.txt — LLM Hello World
+# Python 3.9+
+# ============================================================
+
+# ── LLM Core ────────────────────────────────────────────────
+# LangChain framework + LlamaCpp integration
+langchain==0.2.16
+langchain-community==0.2.16
+langchain-core==0.2.38
+
+# llama-cpp-python: binding Python cho llama.cpp
+# Cài đặt cho CPU-only (máy không có GPU):
+llama-cpp-python==0.2.90
+
+# GPU support (CUDA): thay dòng trên bằng:
+# CMAKE_ARGS="-DLLAMA_CUBLAS=on" pip install llama-cpp-python==0.2.90
+
+# ── Model Download ───────────────────────────────────────────
+# Tải model GGUF từ HuggingFace Hub
+huggingface-hub==0.24.6
+
+# ── Web API ──────────────────────────────────────────────────
+# FastAPI framework
+fastapi==0.112.2
+# ASGI server
+uvicorn[standard]==0.30.6
+# Data validation
+pydantic==2.8.2
+
+# ── Utilities ────────────────────────────────────────────────
+# HTTP requests (dùng bởi huggingface-hub)
+requests==2.32.3
+# Progress bars khi download
+tqdm==4.66.5
