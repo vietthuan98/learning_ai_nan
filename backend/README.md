@@ -71,6 +71,21 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 Truy cập: `http://localhost:8000/docs`
 
+### 5. Chạy bằng Docker (Khuyên dùng cho Deployment)
+
+Dockerfile đã được cấu hình để tự động download model trong quá trình build, giúp container có thể chạy ngay lập tức mà không cần internet.
+
+**Build image:**
+```bash
+docker build -t llm-backend .
+```
+
+**Chạy container:**
+```bash
+docker run -d -p 8000:8000 --name ai-chat-be llm-backend
+```
+
+
 ---
 
 ## 💬 Sử dụng CLI

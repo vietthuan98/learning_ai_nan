@@ -1,0 +1,30 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Project specific
+models/
+*.gguf
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Version control
+.git/
+.gitignore
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs and databases
+*.log
+*.sqlite
