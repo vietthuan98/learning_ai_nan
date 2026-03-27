@@ -63,5 +63,28 @@ class ChatClient:
             response.raise_for_status()
             return response.json()
 
+    def list_sessions(self) -> list[str]:
+        """Fetches the list of active session IDs."""
+        url = f"{self.base_url}/sessions"
+        with httpx.Client(timeout=10.0) as client:
+            response = client.get(url)
+            response.raise_for_status()
+            return response.json()
+
+    def delete_session(self, session_id: str) -> bool:
+        """Deletes a session from the backend."""
+        url = f"{self.base_url}/sessions/{session_id}"
+        with httpx.Client(timeout=10.0) as client:
+            response = client.delete(url)
+            return response.status_code == 200
+
+    def get_session_info(self, session_id: str) -> dict:
+        """Fetches detailed information (including history) for a session."""
+        url = f"{self.base_url}/sessions/{session_id}"
+        with httpx.Client(timeout=10.0) as client:
+            response = client.get(url)
+            response.raise_for_status()
+            return response.json()
+
 # Create a singleton instance for ease of use
 api_client = ChatClient()

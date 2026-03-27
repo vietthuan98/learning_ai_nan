@@ -287,6 +287,15 @@ async def chat_stream(
     )
 
 
+@app.get("/sessions", response_model=list[str], tags=["Sessions"])
+async def list_sessions():
+    """
+    Lấy danh sách ID các session đang active trong registry.
+    """
+    from chat_context import session_registry
+    return list(session_registry._sessions.keys())
+
+
 @app.get("/sessions/{session_id}", response_model=SessionInfo, tags=["Sessions"])
 async def get_session(session_id: str):
     """
