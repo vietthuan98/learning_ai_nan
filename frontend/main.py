@@ -1,9 +1,10 @@
-import random
-import time
-
 import mesop as me
 import mesop.labs as mel
+from api_client import api_client
 
+@me.stateclass
+class State:
+  session_id: str = ""
 
 def on_load(e: me.LoadEvent):
   me.set_theme_mode("system")
@@ -14,25 +15,23 @@ def on_load(e: me.LoadEvent):
     allowed_iframe_parents=["https://mesop-dev.github.io"]
   ),
   path="/",
-  title="Mesop Demo Chat",
+  title="Real Chat Integration",
   on_load=on_load,
 )
 def page():
-  mel.chat(transform, title="Mesop Demo Chat", bot_user="Mesop Bot")
+  mel.chat(transform, title="AI Chat App", bot_user="TinyLlama Bot")
 
 
 def transform(input: str, history: list[mel.ChatMessage]):
-  for line in random.sample(LINES, random.randint(3, len(LINES) - 1)):
-    time.sleep(0.3)
-    yield line + " "
-
-
-LINES = [
-  "Mesop is a Python-based UI framework designed to simplify web UI development for engineers without frontend experience.",
-  "It leverages the power of the Angular web framework and Angular Material components, allowing rapid construction of web demos and internal tools.",
-  "With Mesop, developers can enjoy a fast build-edit-refresh loop thanks to its hot reload feature, making UI tweaks and component integration seamless.",
-  "Deployment is straightforward, utilizing standard HTTP technologies.",
-  "Mesop's component library aims for comprehensive Angular Material component coverage, enhancing UI flexibility and composability.",
-  "It supports custom components for specific use cases, ensuring developers can extend its capabilities to fit their unique requirements.",
-  "Mesop's roadmap includes expanding its component library and simplifying the onboarding processs.",
-]
+  state = me.state(State)
+  
+  # Use the streaming service to get chunks from the backend
+  gen = api_client.stream_chat(input, session_id=state.session_id)
+  
+  try:
+    while True:
+      yield next(gen)
+  except StopIteration as e:
+    # Capture the final session_id returned by the generator
+    if e.value:
+      state.session_id = e.value
