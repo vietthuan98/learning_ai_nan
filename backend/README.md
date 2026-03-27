@@ -39,7 +39,7 @@ llm-hello-world/
 ### 1. Tạo virtual environment
 
 ```bash
-python3.9 -m venv venv
+python3 -m venv venv
 source venv/bin/activate        # Linux/Mac
 # hoặc: venv\Scripts\activate   # Windows
 ```
@@ -58,7 +58,7 @@ pip install -r requirements.txt --ignore-installed llama-cpp-python
 ### 3. Chạy chương trình CLI (recommended để thử trước)
 
 ```bash
-python llm_runner.py
+python3 llm_runner.py
 ```
 
 Lần đầu chạy sẽ tự động download model (~670MB). Sau đó bắt đầu chat.

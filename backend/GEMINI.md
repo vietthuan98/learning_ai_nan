@@ -15,13 +15,13 @@ The project follows a modular, stateless design where each component has a speci
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.9+
+- Python 3.12+
 - Recommended: `venv` or `conda` environment.
 
 ### Setup & Installation
 1.  **Initialize Environment**:
     ```bash
-    python3.9 -m venv venv
+    python3 -m venv venv
     source venv/bin/activate
     ```
 2.  **Install Dependencies**:
