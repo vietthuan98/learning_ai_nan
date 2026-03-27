@@ -1,0 +1,51 @@
+# ============================================================
+# .gitignore — LLM Hello World
+# ============================================================
+
+# ── Models (GGUF files rất lớn, không commit lên git) ────────
+models/
+*.gguf
+*.bin
+*.safetensors
+
+# ── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ── Virtual Environment ──────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+
+# ── Environment variables (chứa API keys, secrets) ──────────
+.env
+.env.local
+.env.*.local
+
+# ── IDE ──────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# ── Logs ─────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── HuggingFace cache ─────────────────────────────────────────
+.cache/
+~/.cache/huggingface/
+
+# ── Testing ──────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
