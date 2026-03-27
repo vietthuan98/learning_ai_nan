@@ -64,12 +64,27 @@ def on_click_delete(e: me.ClickEvent):
   sid = e.key.replace("del-", "")
   try:
     if api_client.delete_session(sid):
+      # Find the index of the session before deleting it
+      try:
+        idx = state.sessions.index(sid)
+      except ValueError:
+        idx = -1
+      
       state.sessions = [s for s in state.sessions if s != sid]
+      
+      # If we just deleted the active session, pick a neighbor
       if state.session_id == sid:
-        state.session_id = ""
-        update_chat_history("")
+        if state.sessions:
+          # Select neighbor: previous one (idx - 1) or next one (now at 0)
+          new_idx = max(0, idx - 1)
+          state.session_id = state.sessions[new_idx]
+          update_chat_history(state.session_id)
+        else:
+          state.session_id = ""
+          update_chat_history("")
   except Exception as ex:
     print(f"Error deleting session: {ex}")
+
 
 
 def transform(input: str, history: list[mel.ChatMessage]):
