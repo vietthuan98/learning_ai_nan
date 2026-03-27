@@ -1,15 +1,18 @@
 import httpx
 import json
+import os
 from typing import Generator, Optional
 
 class ChatClient:
     """
-    A service class to interact with the LLM backend on localhost:8000.
+    A service class to interact with the LLM backend.
     Focuses on streaming responses for a modern chat experience.
     """
     
-    def __init__(self, base_url: str = "http://localhost:8000"):
-        self.base_url = base_url.rstrip("/")
+    def __init__(self, base_url: str = None):
+        # Use provided URL or fallback to environment variable, then to localhost
+        self.base_url = (base_url or os.getenv("BACKEND_URL", "http://localhost:8000")).rstrip("/")
+
 
     def stream_chat(self, message: str, session_id: Optional[str] = None) -> Generator[str, None, str]:
         """

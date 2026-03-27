@@ -35,6 +35,23 @@ mesop main.py
 ```
 Then open your browser at the URL provided in the terminal (usually `http://localhost:32123`).
 
+### 🐳 Running with Docker
+
+You can build and run the frontend using Docker:
+
+**Build image:**
+```bash
+docker build -t llm-frontend .
+```
+
+**Chạy container:**
+```bash
+docker run -d -p 32123:32123 --name ai-chat-fe -e BACKEND_URL=http://host.docker.internal:8000 llm-frontend
+```
+
+> **Note**: If your backend is also running in a Docker container on the same machine, use `http://host.docker.internal:8000` to allow the frontend to reach it. Otherwise, point it to your actual backend server address.
+
+
 ## 📁 Project Structure
 
 The project follows a modular component-based architecture for better maintainability:
