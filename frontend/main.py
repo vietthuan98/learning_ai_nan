@@ -129,22 +129,38 @@ def page():
         for sid in state.sessions:
           is_active = sid == state.session_id
           with me.box(
-            key=sid,
-            on_click=on_click_session,
             style=me.Style(
               display="flex",
               justify_content="space-between",
               align_items="center",
-              padding=me.Padding.symmetric(vertical=10, horizontal=12),
               margin=me.Margin(bottom=4),
               border_radius=8,
               background="#e9ecef" if is_active else "transparent",
-              cursor="pointer",
             )
           ):
-            me.text(f"Session {sid}", style=me.Style(font_size=14, flex_grow=1))
-            with me.box(key=f"del-{sid}", on_click=on_click_delete, style=me.Style(padding=me.Padding.all(4))):
+            # Session click area
+            with me.box(
+              key=sid,
+              on_click=on_click_session,
+              style=me.Style(
+                flex_grow=1,
+                padding=me.Padding.symmetric(vertical=10, horizontal=12),
+                cursor="pointer",
+              )
+            ):
+              me.text(f"Session {sid}", style=me.Style(font_size=14))
+            
+            # Delete button (separate clickable area)
+            with me.box(
+              key=f"del-{sid}",
+              on_click=on_click_delete,
+              style=me.Style(
+                padding=me.Padding.symmetric(vertical=10, horizontal=12),
+                cursor="pointer",
+              )
+            ):
               me.icon("delete", style=me.Style(font_size=18, color="#dc3545" if is_active else "#888"))
+
 
       # New Chat Button
       with me.box(style=me.Style(padding=me.Padding(top=16), border=me.Border(top=me.BorderSide(width=1, style="solid", color="#ddd")))):
