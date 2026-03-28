@@ -4,12 +4,34 @@ This project provides a full-stack AI Chat application, featuring a **TinyLlama*
 
 ## 📋 Prerequisites
 
-- **Python: 3.10 to 3.12** is recommended for compatibility with `llama-cpp-python` and `mesop`.
+- **Docker & Docker Compose**: Installed on your machine.
+- **Python: 3.10 to 3.12**: (If running locally without Docker).
 - **System**: macOS, Linux, or Windows (via WSL2 recommended for backend).
 
 ---
 
-## 🛠️ Step 1: Backend Setup (API Server)
+## 🐳 Quick Start with Docker Compose (Recommended)
+
+Run both the backend and frontend with a single command:
+
+1.  **Clone the repository**:
+    ```bash
+    git clone <your-repo-url>
+    cd learning_with_ai_nanl
+    ```
+
+2.  **Start the services**:
+    ```bash
+    docker-compose up --build -d
+    ```
+
+3.  **Access the application**:
+    - **Frontend (Chat UI)**: `http://localhost:32123`
+    - **Backend (FastAPI)**: `http://localhost:8000/docs`
+
+---
+
+## 🛠️ Step 1: Backend Setup (Local)
 
 The backend uses `llama-cpp-python` to serve a TinyLlama GGUF model through a FastAPI service.
 
