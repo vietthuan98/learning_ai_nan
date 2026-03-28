@@ -44,7 +44,7 @@ You can build and run the frontend using Docker:
 docker build -t llm-frontend .
 ```
 
-**Chạy container:**
+**Run container:**
 ```bash
 docker run -d -p 32123:32123 --name ai-chat-fe -e BACKEND_URL=http://host.docker.internal:8000 llm-frontend
 ```
